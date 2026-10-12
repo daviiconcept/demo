@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+  body{
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('Assets/bank\ hall.avif');
+  background-size: cover;
+  background-position: center;
+
+}
+
+nav {
+  padding: 10px 20px; 
+}
+
+.app {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.logo-container {
+  display: flex; 
+  align-items: center; 
+}
+
+.notification-container {
+  display: flex;
+  align-items: center; 
+  color: #fff;
+}
+
+.logo-container img {
+  margin-right: 10px; 
+  border-radius: 50px;
+}
+
+.notification-container svg,
+.notification-container img {
+  margin-left: 10px; 
+  cursor: pointer;
+}
+
+span {
+  font-size: 18px; 
+  font-weight: bold; 
+  color: #f0f0f0;
+}
+
+.drop-down {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.drop-down-content {
+  display: none; 
+  position: absolute;
+  background-color: #f2f2f2;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 5px;
+  padding: 10px;
+  z-index: 10;
+}  
+
+.drop-down-content a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.drop-down-content a:hover {
+  background-color: #f2f2f2;
+}
+
+.show {
+  display: block;
+} 
+
+.drop-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.drop-label p {
+  margin: 0;
+}
+
+.drop-label button{
+  width: 70px;
+  height: 10px;
+  background-color:#f2f2f2 ;
+}
+
+.drop-country img {
+  border-radius: 2px;
+}
+
+.drop-content {
+  display: none;
+  position: absolute;
+  background-color: #f2f2f2;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  z-index: 100;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.drop-down a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.drop-content a:hover {
+  background-color: #f2f2f2;
+} 
+
+.drop-content.show {
+  display: block;
+}
+
+.next h1{
+  color: #A9A9A9;
+  text-align: center;
+  margin-top: 150px;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.next h1 span{
+  font-size:40px ;
+  color:#A9A9A9;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.loginSection {
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+#usernameInput {
+  padding: 10px;
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color:#DAA520;
+  border: none;
+  font-weight: bold;
+  width: 100%;
+  max-width: 290px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 290px;
+  margin: 0 auto 15px auto;
+  box-sizing: border-box;
+}
+
+.input-wrapper svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #333; 
+  pointer-events: none;
+} 
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 10px 10px 45px; 
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.password-forget p{
+  color:#4169E1 ;
+  text-align: right;
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.password-forget a{
+  text-decoration: none;
+}
+
+.unlock p{
+  text-align: center;
+  justify-content: center;
+  color:#A9A9A9 ;
+  font-weight: 700;
+}
+
+.unlock p span{
+  font-weight: 300;
+  color: #4169E1;
+  font-size: 15px;
+}
+
+.unlock a{
+  text-decoration: none;
+}
+
+.next-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+  text-align: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.link-item p {
+  color: #4169E1;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px; 
+  margin: 0;
+}
+
+.link-item a{
+  text-decoration: none;
+}
+
+.container-box{
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  text-align: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.sub-container {
+  padding: 15px 20px;
+  border: 1px solid #4169E1;
+  border-radius: 10px;
+  width: 130px;
+  text-align: center;
+}
+
+.sub-container a{
+  text-decoration: none;
+}
+
+.sub-container p{
+  color: #4169E1;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; 
+  margin: 0;
+}
+
+.footer{
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  nav {
+    padding: 10px;
+  }
+
+  .next h1, 
+  .next h1 span {
+    font-size: 26px;
+    margin-top: 60px;
+  }
+
+  .container-box {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .sub-container {
+    width: 80%;
+    max-width: 250px;
+    box-sizing: border-box;
+  }
+
+  .password-forget p {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+</style>
+<body>
+    
+
+      <nav>
+    <div class="app">
+        <div class="logo-container">
+            <img src="Assets/logo.png" height="30px" width="100px" alt="Daviicon Bank Logo">
+            <span>Daviicon Bank</span>
+        </div>
+        <div class="notification-container">
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16" >
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" style="color: #fff;"/>
+            </svg></a>
+    
+            <div class="drop">
+              <div class="drop-country" onclick="toggleFlagDropdown()"> 
+                <img id="selected-flag" src="assets/nigerian flag.jpg" height="24px" width="24px" alt="Nigerian Flag">
+              </div>
+              <div class="drop-content" id="FlagDropdown"> 
+                <img src="assets/american-flag.avif" height="24px" width="24px" alt="American Flag" onclick="changeFlag('assets/american-flag.avif')">
+                <img src="assets/union jac.avif" height="24px" width="24px" alt="British Flag" onclick="changeFlag('assets/union jac.avif')">
+                <img src="assets/south africa.avif" height="24px" width="24px" alt="South African Flag" onclick="changeFlag('assets/south africa.avif')">
+                <img src="assets/nigerian flag.jpg" height="24px" width="24px" alt="South African Flag" onclick="changeFlag('assets/nigerian flag.jpg')">
+              </div>
+            </div>
+
+
+            <div class="drop-down">
+              <div class="drop-label" onclick="toggleLanguageDropdown()">
+                <p id="selected-language">Language</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                     class="bi bi-chevron-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 
+                           6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                </svg>
+              </div>
+            
+              <div class="drop-down-content" id="languageDropdown">
+                <a href="#" onclick="changeLanguage('English - EN')">English - EN</a>
+                <a href="#" onclick="changeLanguage('Español - ES')">Español - ES</a>
+                <a href="#" onclick="changeLanguage('العربية - AR')">العربية - AR</a>
+                <a href="#" onclick="changeLanguage('Deutsch - DE')">Deutsch - DE</a>
+                <a href="#" onclick="changeLanguage('שפה - HE')">שפה - HE</a>
+                <a href="#" onclick="changeLanguage('언어 - KO')">언어 - KO</a>
+                <a href="#" onclick="changeLanguage('Português - PT')">Português - PT</a>
+                <a href="#" onclick="changeLanguage('语言 - ZH')">语言 - ZH</a>
+              </div>
+            </div>
+
+</nav>
+
+<div class="main-container">
+  <div class="next">
+    <h1>Welcome Back,<span>Davidson</span></h1>
+  </div>
+
+
+  <div id="loginSection">
+    <div class="input-wrapper">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+        <path d="M8 1a3 3 0 0 0-3 3v3H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-1V4a3 3 0 0 0-3-3zm1 8.995a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" style="top: 50%; transform: translateY(-10%); " />
+      </svg>
+      <input type="password" id="usernameInput" placeholder="Password" style="padding-left:30px; font-weight: 500;"/>
+    </div>
+    <button onclick="login()">login</button>
+
+   
+
+
+    <div class="password-forget">
+      <a href="#"><p>Forgot Password?</p></a>
+    </div>
+
+    
+  </div>
+</div>
+
+ <div class="unlock">
+   <a href="#">><p>Not Davidson?<span>Unlock device</span></p></a>
+ </div>
+
+ <div class="next-container">
+  <div class="link-item">
+    <a href="#"><p>
+      Internet Banking
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5"/>
+        <path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z"/>
+      </svg>
+    </p></a>
+  </div>
+
+  <div class="link-item">
+    <a href="#"><p>
+      Private Policy
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5"/>
+        <path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z"/>
+      </svg>
+    </p></a>
+  </div>
+</div>
+
+<div class="container-box">
+<div class="sub-container">
+  <a href="#"><p>1-Tap Payment<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+  </svg></p></a>
+</div>
+
+<div class="sub-container">
+  <a href="#"><p>BreezPay<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+    <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+  </svg></p></a>
+</div>
+
+
+</div>
+
+<footer class="footer">
+
+  &copy 2024 Daviicon Bank Plc (Licenced by the Central Bank Of Nigeria).
+
+</footer>
+
+<script>
+    
+function toggleFlagDropdown() {
+  const dropdown = document.getElementById("FlagDropdown");
+  dropdown.classList.toggle("show");
+}
+
+function changeFlag(flagSrc) {
+  const selectedFlag = document.getElementById("selected-flag");
+  selectedFlag.src = flagSrc; 
+  toggleFlagDropdown(); 
+}
+
+function toggleLanguageDropdown() {
+  const dropdown = document.getElementById("languageDropdown");
+  dropdown.classList.toggle("show");
+}
+
+function changeLanguage(language) {
+  const selectedLanguage = document.getElementById("selected-language");
+  selectedLanguage.textContent = language; 
+  toggleLanguageDropdown(); 
+}
+
+function login() {
+  const passwordInput = document.getElementById("usernameInput").value;
+
+  if (passwordInput) {
+    
+    window.location.href = 'yourPage.html';
+  } else {
+    alert("Please enter your password."); 
+  }
+}
+</script>
+
+</body>
+</html>

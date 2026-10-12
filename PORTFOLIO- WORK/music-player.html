@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #333;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+        }
+
+        .music-player {
+            background: #000;
+            width: 100%;
+            max-width: 400px;
+            padding: 25px 35px;
+            text-align: center;
+            border-radius: 30px;
+            border: 2px solid #777;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        nav .circle {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border: 2px solid #777;
+            color: #000;
+            box-shadow: 0 5px 10px rgba(255, 26, 26, 0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .song-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid #777;
+            box-shadow: 0 10px 60px rgba(255, 26, 26, 0.22);
+            object-fit: cover;
+        }
+
+        .music-player h1 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .music-player p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .time-display {
+            color: #fff;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        #progress {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 25px 0 15px;
+        }
+
+        #progress::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            background: #000;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 5px rgba(255, 26, 26, 0.22);
+            cursor: pointer;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #000;
+            box-shadow: 0 5px 5px rgba(255, 26, 26, 0.22);
+            cursor: pointer;
+            border: 2px solid #777;
+            transition: transform 0.2s ease;
+        }
+
+        .icon-circle:active {
+            transform: scale(0.95);
+        }
+
+        .icon-circle.playpause {
+            transform: scale(1.2);
+        }
+
+        .icon-circle.playpause:active {
+            transform: scale(1.1);
+        }
+
+        .volume-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #volume {
+            width: 70%;
+            accent-color: #fff;
+            cursor: pointer;
+        }
+
+       
+        @media (max-width: 480px) {
+            .music-player {
+                padding: 20px 20px;
+                border-radius: 20px;
+            }
+
+            .song-img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .music-player h1 {
+                font-size: 18px;
+            }
+
+            .controls {
+                gap: 15px;
+            }
+
+            .icon-circle {
+                width: 45px;
+                height: 45px;
+            }
+
+            .icon-circle.playpause {
+                transform: scale(1.15);
+            }
+        }
+
+        @media (max-width: 340px) {
+            .song-img {
+                width: 130px;
+                height: 130px;
+            }
+
+            nav {
+                margin-bottom: 20px;
+            }
+
+            #progress {
+                margin: 15px 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+  
+    
+   <div class="container">
+    <div class="music-player">
+        <nav>
+            <div class="circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                </svg>
+            </div>
+            <div class="circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sliders2-vertical" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M0 10.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H3V1.5a.5.5 0 0 0-1 0V10H.5a.5.5 0 0 0-.5.5M2.5 12a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5m3-6.5A.5.5 0 0 0 6 6h1.5v8.5a.5.5 0 0 0 1 0V6H10a.5.5 0 0 0 0-1H6a.5.5 0 0 0-.5.5M8 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2A.5.5 0 0 0 8 1m3 9.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H14V1.5a.5.5 0 0 0-1 0V10h-1.5a.5.5 0 0 0-.5.5m2.5 1.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5"/>
+                </svg>
+            </div>
+            <div class="circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                </svg>
+            </div>
+        </nav>
+        <img src="assets/mc dav.jpg" class="song-img" alt="Song mc dav">
+        <h1><em></emM>My Album</h1>
+        <p>song-mix</p>
+        <audio id="song">
+            <source src="assets/don williams copy.mp3" type="audio/mpeg">
+            <source src="assets/09 Dike.mp3" type="audio/mpeg">
+             <source src="assets/01 Eddie Quansa-1.mp3" type="audio/mpeg">     
+           
+          
+
+
+        </audio>
+        <div>
+            <span id="current-time">00:00</span> / <span id="total-duration">00:00</span>
+        </div>
+        <input type="range" value="0" id="progress">
+        <div class="controls">
+            <div class="icon-circle" id="prev" onclick="prevSong()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-rewind-fill" viewBox="0 0 16 16">
+                    <path d="M8.404 7.304a.802.802 0 0 0 0 1.392l6.363 3.692c.52.302 1.233-.043 1.233-.696V4.308c0-.653-.713-.998-1.233-.696z"/>
+                    <path d="M.404 7.304a.802.802 0 0 0 0 1.392l6.363 3.692c.52.302 1.233-.043 1.233-.696V4.308c0-.653-.713-.998-1.233-.696z"/>
+                </svg>
+            </div>
+            <div class="icon-circle playpause" onclick="playpause()">
+                <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                </svg>
+                <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" style="display:none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 4.5h3v15H6zM15 4.5h3v15h-3z"/>
+                </svg>
+            </div>
+            <div class="icon-circle" id="next" onclick="nextSong()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-fast-forward-fill" viewBox="0 0 16 16">
+                    <path d="M7.596 7.304a.802.802 0 0 1 0 1.392l-6.363 3.692C.713 12.69 0 12.345 0 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+                    <path d="M15.596 7.304a.802.802 0 0 1 0 1.392l-6.363 3.692C8.713 12.69 8 12.345 8 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+                </svg>
+            </div>
+        </div>
+        <input type="range" id="volume" value="100" min="0" max="100">
+    </div>
+</div>  
+
+
+    <script>
+        let progress = document.getElementById("progress");
+        let song = document.getElementById("song");
+        let playIcon = document.getElementById("play-icon");
+        let pauseIcon = document.getElementById("pause-icon");
+        let currentTimeElem = document.getElementById("current-time");
+        let totalDurationElem = document.getElementById("total-duration");
+        let volumeSlider = document.getElementById("volume");
+
+        let playlist = [
+            
+           
+          "assets/don williams.mp3",
+             "assets/09 Dike.mp3",
+            "assets/01 Eddie Quansa-1.mp3",
+      
+        ];
+        
+        let currentSong = 0;
+        song.src = playlist[currentSong];
+
+        song.addEventListener("loadedmetadata", function() {
+            totalDurationElem.innerHTML = formatTime(song.duration);
+            progress.max = song.duration;
+        });
+
+        song.addEventListener("timeupdate", function() {
+            progress.value = song.currentTime;
+            currentTimeElem.innerHTML = formatTime(song.currentTime);
+        });
+
+        progress.addEventListener("input", function() {
+            song.currentTime = progress.value;
+        });
+
+        volumeSlider.addEventListener("input", function() {
+            song.volume = volumeSlider.value / 100;
+        });
+
+        function playpause() {
+            if (song.paused) {
+                song.play();
+                playIcon.style.display = "none";
+                pauseIcon.style.display = "inline";
+            } else {
+                song.pause();
+                playIcon.style.display = "inline";
+                pauseIcon.style.display = "none";
+            }
+        }
+
+        function nextSong() {
+            currentSong = (currentSong + 1) % playlist.length;
+            song.src = playlist[currentSong];
+            playpause();
+        }
+
+        function prevSong() {
+            currentSong = (currentSong - 1 + playlist.length) % playlist.length;
+            song.src = playlist[currentSong];
+            playpause();
+        }
+
+        song.addEventListener("ended", function() {
+            nextSong();
+        }); 
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "00:00";
+            let minutes = Math.floor(seconds / 60);
+            let secs = Math.floor(seconds % 60);
+            if (secs < 10) secs = "0" + secs;
+            return minutes + ":" + secs;
+        }
+    </script>   
+</body>
+</html>

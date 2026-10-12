@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Artisan App</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f8f9fa;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+   
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #DA70D6;
+        padding: 10px 20px;
+        color: #fff;
+        position: relative;
+        flex-wrap: wrap;
+      }
+
+      .nav-logo img {
+        display: block;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+        transition: opacity 0.2s;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.8;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      
+      .nav-bottom {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 20px;
+        gap: 20px;
+        background: #FFFFE0;
+      }
+
+      .nav-bottom a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+      }
+
+     
+      .container-1 {
+        text-align: center;
+        padding: 20px 15px;
+      }
+
+      .container-1 h1 {
+        margin: 20px 0 10px 0;
+        font-size: 40px;
+        color: #000;
+        line-height: 1.2;
+      }
+
+      .container-1 p {
+        font-size: 18px;
+        color: #555;
+      }
+
+      .container-2 {
+        text-align: center;
+        font-size: 20px;
+        padding: 15px;
+      }
+
+      .container-2 h2 {
+        color: #555;
+        display: inline-block;
+        margin-bottom: 5px;
+      }
+
+      
+      .grid-item-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+        gap: 15px;
+        padding: 20px;
+        max-width: 1300px;
+        margin: 0 auto;
+        width: 100%;
+      } 
+
+      .grid-item-container a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .grid-item {
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        padding: 12px 15px;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        font-size: 15px;
+        font-weight: bold;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        color: #333;
+      }
+
+      .grid-item img {
+        margin-right: 12px;
+        object-fit: cover;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+
+      .grid-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+     
+      footer {
+        background-color: #DA70D6;
+        color: #fff;
+        padding: 40px 20px 20px 20px;
+        text-align: center;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .top-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .top-row .section {
+        flex: 1;
+        min-width: 200px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .top-row .section h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .top-row .section a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        margin-bottom: 6px;
+      }
+
+      .social-icons {
+        margin: 20px 0;
+      }
+
+      .social-icons p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 16px;
+      }
+
+      .social-icons a {
+        font-size: 26px;
+        color: #fff;
+        transition: transform 0.2s ease;
+      }
+
+      .social-icons a:hover {
+        transform: scale(1.15);
+      }
+
+      .copyright {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-top: 15px;
+        color: #f1f1f1;
+      }
+
+     
+      @media (max-width: 850px) {
+        .top-row {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+
+        .top-row .section {
+          min-width: 100%;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          padding-top: 10px;
+          gap: 12px;
+          text-align: center;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .container-1 h1 {
+          font-size: 28px;
+          margin: 10px 0;
+        }
+
+        .container-1 p {
+          font-size: 15px;
+        }
+
+        .grid-item-container {
+          grid-template-columns: 1fr;
+          padding: 10px 15px;
+        }
+
+        .nav-bottom {
+          justify-content: center;
+        }
+      }
+    </style>
+</head>
+<body>
+
+    <nav>
+      <a href="./nav-logo.html" class="nav-logo">
+        <img src="./assets/logo.png" width="80" alt="Davii concept logo">
+      </a>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="./home.html">Home</a>
+        <a href="./Contact.html">Contact</a>
+        <a href="./about.html">About</a>
+        <a href="./deals.html">Today's Jobs</a>
+      </div>
+    </nav>
+   
+    <div class="nav-bottom">
+      <a href="./login.html">
+        <i class="fas fa-lock" style="color:#DAA520;"></i> Log in
+      </a>
+      <a href="./register.html">
+        <i class="fas fa-user" style="color:#666;"></i> Register
+      </a>
+    </div>
+
+    <div class="container-1">
+      <h1>Welcome to Davii-concept job search platform!</h1>
+      <p>For Blue & White collar, Remote and Artisan Job seekers</p>
+    </div>
+
+    <div class="container-2">
+      <h2>Jobs Category</h2><br>
+      <img src="Assets/dropdown_icon.png" width="24" height="24" alt="Dropdown">
+    </div>
+
+    <div class="grid-item-container">
+        <a href="fashion">
+          <div class="grid-item">
+            <img src="assets/fashion.jpeg" alt="fashion" height="50" width="50">
+            Fashion & Design jobs
+          </div>
+        </a>
+
+        <a href="hospitality">
+          <div class="grid-item">
+            <img src="Assets/hospitality.png" alt="hospitality" height="50" width="50">
+            Hospitality jobs
+          </div>
+        </a>
+
+        <a href="journalism">
+          <div class="grid-item">
+            <img src="Assets/journalism.png" alt="content writing" height="50" width="50">
+            Content writing jobs
+          </div>
+        </a>
+
+        <a href="teaching">
+          <div class="grid-item">
+            <img src="assets/teaching.png" alt="teaching" height="50" width="50">
+            Teaching jobs
+          </div>
+        </a>
+
+        <a href="admin">
+          <div class="grid-item">
+            <img src="assets/admin.png" alt="admin" height="50" width="50">
+            Administrative jobs
+          </div>
+        </a>
+
+        <a href="sales">
+          <div class="grid-item">
+            <img src="assets/sales.png" alt="sales" height="50" width="50">
+            Sales & Marketing jobs
+          </div>
+        </a>
+
+        <a href="care">
+          <div class="grid-item">
+            <img src="assets/care.png" alt="home care" height="50" width="50">
+            Home care jobs
+          </div>
+        </a>
+
+        <a href="carpentry">
+          <div class="grid-item">
+            <img src="assets/carpentry.jpeg" alt="carpentry" height="50" width="50">
+            Carpentry jobs
+          </div>
+        </a>
+
+        <a href="technician">
+          <div class="grid-item">
+            <img src="assets/teaching.png" alt="technician" height="50" width="50">
+            Technician jobs
+          </div>
+        </a>
+
+        <a href="construction">
+          <div class="grid-item">
+            <img src="assets/construction.png" alt="construction" height="50" width="50">
+            Construction jobs
+          </div>
+        </a>
+
+        <a href="logistics">
+          <div class="grid-item">
+            <img src="assets/logistics.jpeg" alt="logistics" height="50" width="50">
+            Logistics jobs
+          </div>
+        </a>
+
+        <a href="tech">
+          <div class="grid-item">
+            <img src="assets/tech.png" alt="tech" height="50" width="50">
+            Tech jobs
+          </div>
+        </a>
+
+        <a href="driving">
+          <div class="grid-item">
+            <img src="assets/driving.jpeg" alt="driving" height="50" width="50">
+            Driving jobs
+          </div>
+        </a>
+
+        <a href="cleaning">
+          <div class="grid-item">
+            <img src="assets/cleaning.png" alt="cleaning" height="50" width="50">
+            Cleaning jobs
+          </div>
+        </a>
+
+        <a href="agric">
+          <div class="grid-item">
+            <img src="assets/agric.png" alt="agro" height="50" width="50">
+            Agro jobs
+          </div>
+        </a>
+
+        <a href="music">
+          <div class="grid-item">
+            <img src="assets/music.png" alt="music" height="50" width="50">
+            Music & Entertainment jobs
+          </div>
+        </a>
+
+        <a href="art">
+          <div class="grid-item">
+            <img src="assets/art.png" alt="art" height="50" width="50">
+            Arts & Graphic jobs
+          </div>
+        </a>
+
+        <a href="laundry">
+          <div class="grid-item">
+            <img src="assets/laundry.png" alt="laundry" height="50" width="50">
+            Laundry jobs
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="grid-item">
+            <img src="assets/factory work.png" alt="factory" height="50" width="50">
+            Factory jobs
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="grid-item">
+            <img src="assets/security jobs.png" alt="security" height="50" width="50">
+            Security jobs
+          </div>
+        </a>
+
+        <a href="engineering">
+          <div class="grid-item">
+            <img src="assets/engineering.png" alt="engineering" height="50" width="50">
+            Engineering jobs
+          </div>
+        </a>
+
+        <a href="law">
+          <div class="grid-item">
+            <img src="assets/law.png" alt="law" height="50" width="50">
+            Law jobs
+          </div>
+        </a>
+
+        <a href="plumber">
+          <div class="grid-item">
+            <img src="assets/security jobs.png" alt="plumber" height="50" width="50">
+            Plumber jobs
+          </div>
+        </a>
+
+        <a href="journalism">
+          <div class="grid-item">
+            <img src="assets/image-2.png" alt="journalism" height="50" width="50">
+            Journalism & Editor jobs
+          </div>
+        </a>
+
+        <a href="telecom">
+          <div class="grid-item">
+            <img src="assets/telecom.png" alt="telecom" height="50" width="50">
+            Telecom jobs
+          </div>
+        </a>
+
+        <a href="beauty">
+          <div class="grid-item">
+            <img src="assets/beaulty.jpeg" alt="beauty" height="50" width="50">
+            Beauty care jobs
+          </div>
+        </a>
+
+        <a href="tech">
+          <div class="grid-item">
+            <img src="assets/curtain.png" alt="ICT" height="50" width="50">
+            ICT jobs
+          </div>
+        </a>
+
+        <a href="nav-logo.html">
+          <div class="grid-item">
+            <img src="assets/image-3.jpg" alt="world" height="40" width="80">
+            Davii-concept world
+          </div>
+        </a>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="top-row">
+          <div class="section">
+            Davii-concept Artisan job hub App is specifically designed for locating artisans who are willing to work daily, weekly, or monthly within your geolocation.
+          </div>
+    
+          <div class="section">
+            <h2>Make money with us</h2>
+            Stand great chances of getting exciting offers when you refer people for jobs via our portal.
+          </div>
+    
+          <div class="section">
+            <h2>What we offer</h2>
+            <a href="#">Job placing</a>
+            <a href="#">Career guide</a>
+            <a href="#">Skill training & advocacy</a>
+            <a href="#">General consultancy</a>
+          </div>
+    
+          <div class="section">
+            <h2>Contacts</h2>
+            Shop 242, 243 Tejuosho Ultra Modern Complex, Tejuosho, Yaba, Lagos, Nigeria.
+          </div>
+        </div>
+
+        <img src="assets/logo.png" width="80" alt="davii concept logo">
+          
+        <div class="social-icons">
+          <p>
+            Follow us @ 
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram" style="color:#E1306C;"></i></a>
+            <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter" style="color: #fff;"></i></a>
+            <a href="https://t.me/username" target="_blank"><i class="fab fa-telegram" style="color:#0088cc;"></i></a>
+            <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok" style="color: #000;"></i></a>
+          </p>
+        </div>
+
+        <p class="copyright">
+          Conditions of Use &nbsp;|&nbsp; Privacy Notice &nbsp;|&nbsp; Consumer Health Data Privacy Disclosure <br>
+          &copy; 1996-2026, Davii-concept.com, Inc. or its affiliates
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');
+      }
+    </script>
+</body>
+</html>

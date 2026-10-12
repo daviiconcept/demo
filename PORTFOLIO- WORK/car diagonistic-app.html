@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Diagnostics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #D3D3D3;
+      margin: 0;
+      padding: 20px 10px;
+      font-family: sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('assets/car- diagonistics.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .diagnostic-container {
+      width: 100%;
+      max-width: 600px;
+      padding: 30px 20px;
+      background: #FAFAFA;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin: 0 0 20px 0;
+      color: #333;
+    }
+
+    p {
+      font-weight: 700;
+      font-size: 18px;
+      margin: 10px 0 5px 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    select, input, button {
+      width: 100%;
+      max-width: 400px;
+      padding: 12px;
+      margin: 8px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    button {
+      background-color: #000080;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #000055;
+    }
+
+    h3, h4 {
+      text-align: center;
+      font-size: 20px;
+      margin: 20px 0 10px 0;
+      width: 100%;
+    }
+
+    #result, #historyList {
+      background: #eee;
+      padding: 12px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 4px;
+      word-wrap: break-word;
+    }
+
+    #result {
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      background: #ddd;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+  
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .diagnostic-container {
+        padding: 20px 15px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      select, input, button {
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      h3, h4 {
+        font-size: 18px;
+      }
+    }
+  
+  </style>
+</head>
+<body>
+
+  <div class="diagnostic-container">
+    <h1><i class="fas fa-car" style="color:#000080;"></i> Car Diagnostics</h1>
+    
+    <p>Select car model:</p>
+    <label for="carModel" class="sr-only"></label>
+    <select id="carModel">
+      <option value="Toyota">Toyota</option>
+      <option value="Honda">Honda</option>
+      <option value="Hyundai">Hyundai</option>
+      <option value="RangeRover">Range Rover</option>
+      <option value="Kia">Kia</option>
+      <option value="Bmw">BMW</option>
+      <option value="innoson">Innoson</option>
+      <option value="lexus">Lexus</option>
+      <option value="mack">Mack</option>
+    </select>
+
+    <input type="text" id="carIssue" placeholder="Describe issue (e.g. engine light)"/>
+    <button onclick="checkIssue()">Check Diagnosis</button>
+
+    <h3><i class="fas fa-tools"></i> Diagnosis Result:</h3>
+    <div id="result"></div>
+
+    <h4><i class="fas fa-clipboard-list" style="font-size: 24px;"></i> History:</h4>
+    <ul id="historyList"></ul>
+  </div>
+
+  <script>
+    const issueDatabase = {
+      "engine light": "Possible engine misfire or sensor issue. Recommended: Check engine codes.",
+      "weird sound": "Might be brake or suspension issue. Please inspect undercarriage.",
+      "oil leak": "Check for worn gaskets or loose oil cap.",
+      "battery dead": "Try jump-starting or replacing the battery.",
+      "brake issue": "You need to possibly change the brake pads.",
+      "dim lights": "The lamp bulbs are due for change.",
+      "noise on the wheels": "You should go for wheel balancing/alignment.",
+      "dark smoke from exhaust": "Bad fuel. Recommended: Service the engine.",
+      "engine light on": "Sensor malfunction, misfire, exhaust issues. Recommended: Scan with OBD-II tool, inspect sensors, fix related parts.",
+      "noisy weird sound": "Brake pad wear, rotor damage. Recommended: Replace brake pads, resurface or replace rotors.",
+      "overheating": "Low coolant, bad thermostat, radiator leak. Recommended: Add coolant, replace thermostat, repair radiator.",
+      "blue smoke from exhaust": "Burning oil from worn piston rings or valve seals. Recommended: Engine rebuild or seal replacement.",
+      "white smoke from exhaust": "Coolant leak into engine (blown head gasket). Recommended: Replace head gasket, inspect for warping.",
+      "car jerking while driving": "Dirty fuel injectors, clogged fuel filter, faulty spark plugs, bad ignition coils. Recommended: Clean/replace fuel injectors, replace fuel filter, replace spark plugs/coils.",
+      "steering wheel vibration": "Unbalanced tires, warped brake rotors, worn suspension parts. Recommended: Balance tires, replace or resurface brake rotors, inspect and fix suspension.",
+      "brakes squeaking": "Worn brake pads, glazed pads/rotors, lack of lubrication on contact points. Recommended: Replace brake pads, resurface rotors, lubricate contact points."
+    };
+
+    const history = [];
+
+    function checkIssue() {
+      const model = document.getElementById("carModel").value;
+      const issueInput = document.getElementById("carIssue").value.trim().toLowerCase();
+      const resultDiv = document.getElementById("result");
+      const historyList = document.getElementById("historyList");
+
+      if (issueInput === "") {
+        alert("Please enter the issue");
+        return;
+      }
+
+      const diagnosis = issueDatabase[issueInput] || "Issue not found in database. Try visiting a mechanic.";
+      resultDiv.innerHTML = `<strong>Model:</strong> ${model.toUpperCase()}<br><strong>Diagnosis:</strong> ${diagnosis}`;
+
+      const record = `${model.toUpperCase()} - ${issueInput} → ${diagnosis}`;
+      history.push(record);
+
+      historyList.innerHTML = "";
+      history.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        historyList.appendChild(li);
+      });
+
+      document.getElementById("carIssue").value = "";
+    }
+  </script>
+</body>
+</html>

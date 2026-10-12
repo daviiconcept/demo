@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Davii Concept</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/tejuosho 1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #DA70D6;
+            padding: 10px 20px;
+            color: #fff;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        a { 
+            text-decoration: none;
+            color: inherit;
+            font-size: 16px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-bottom {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            gap: 20px;
+            background: #FFFFE0;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 0 15px;
+            flex: 1;
+        }
+
+        .contact-container h1 {
+            text-align: center;
+            padding: 10px;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #ffffff;
+            font-size: 32px;
+        }
+
+        .contact-container-1 {
+            max-width: 600px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .contact-container-1 p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .contact-container-1 span {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #f1f1f1;
+        }
+
+       
+        .social-media {
+            max-width: 600px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .social-media h5 {
+            font-size: 22px;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #FFD700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .social-media ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-media li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            word-break: break-word;
+        }
+
+        .social-media li a:hover {
+            background: rgba(218, 112, 214, 0.4);
+            transform: translateX(4px);
+        }
+
+        .social-media i {
+            font-size: 20px;
+            width: 25px;
+            text-align: center;
+        }
+
+       
+        .fa-facebook { color: #1877F2; }
+        .fa-telegram { color: #0088cc; }
+        .fa-x-twitter { color: #ffffff; }
+        .fa-instagram { color: #E1306C; }
+        .fa-linkedin { color: #0A66C2; }
+        .fa-whatsapp { color: #25D366; }
+        .fa-tiktok { color: #ffffff; }
+        .fa-github { color: #ffffff; }
+        .fa-envelope { color: #FFD700; }
+
+       
+        footer {
+            background-color: #DA70D6;
+            color: #fff;
+            padding: 30px 20px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .top-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .top-row .section h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .top-row .section a {
+            display: block;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .copyright-text {
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+    
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 8px;
+            }
+
+            .contact-container h1 {
+                font-size: 26px;
+            }
+
+            .social-media li a {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   
+    <nav>
+        <a href="nav-logo.html" class="nav-logo">
+            <img src="assets/logo.png" width="90" alt="Davii concept logo">
+        </a>
+        <div class="nav-links">
+            <a href="./home.html">Home</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./about.html">About</a>
+            <a href="./job site.html">Today's Jobs</a>
+        </div>
+    </nav>
+   
+    <div class="nav-bottom">
+        <a href="./login.html">
+            <i class="fas fa-lock" style="color:#FFD700;"></i> Log in
+        </a>
+        <a href="./register.html">
+            <i class="fas fa-user" style="color:#888;"></i> Register
+        </a>
+    </div>
+
+  
+    <div class="contact-container">
+        <h1>Contact Us</h1> 
+
+        <div class="contact-container-1">
+            <p>
+                Our Contact Address 
+                <img src="./assets/dropdown_icon.png" width="13" alt="Dropdown Icon">
+            </p>
+            <span>
+                Shop A2018 Tejuosho Main Shopping Complex, Yaba, Lagos, Nigeria<br>
+                <strong>Tel:</strong> +234 8030854814, +234 9075184040
+            </span>
+        </div>
+
+        <div class="social-media">
+            <h5>
+                Social Media Handles 
+                <img src="./assets/dropdown_icon.png" width="13" alt="Dropdown Icon">
+            </h5>
+            <ul>
+                <li>
+                    <a href="https://facebook.com" target="_blank">
+                        <i class="fab fa-facebook"></i> Facebook: @omenidavidson
+                    </a>
+                </li>
+                <li>
+                    <a href="https://t.me/username" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram Office: Shop A2018 Tejuosho Main Market, Yaba, Lagos
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com" target="_blank">
+                        <i class="fa-brands fa-x-twitter"></i> X (Twitter): @daviiconcept
+                    </a>
+                </li>
+                <li>
+                    <a href="https://instagram.com" target="_blank">
+                        <i class="fab fa-instagram"></i> Instagram: @omenidavidson
+                    </a>
+                </li>
+                <li>
+                    <a href="https://linkedin.com" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn: linkedin.com/in/omeni-davidson
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wa.me/2348030854814" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: +234 8030854814
+                    </a>
+                </li>
+                <li>
+                    <a href="https://t.me/username" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram Personal: @omenidavidson
+                    </a>
+                </li>
+                <li>
+                    <a href="https://tiktok.com" target="_blank">
+                        <i class="fab fa-tiktok"></i> TikTok: @daviiconcept
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com" target="_blank">
+                        <i class="fab fa-github"></i> GitHub: @daviiconcept
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:daviiconcept@gmail.com">
+                        <i class="fas fa-envelope"></i> Email: daviiconcept@gmail.com , david4us4real@yahoo.com
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+  
+    <footer>
+        <div class="footer-content">
+            <div class="top-row">
+                <div class="section">
+                    Davii-concept Artisan job hub App is specifically designed for locating artisans who are willing to work on daily, weekly, and monthly bases in your geo location.
+                </div>
+
+                <div class="section">
+                    <h2>Make Money With Us</h2>
+                    Stand great chances of getting exciting offers when you refer people for jobs via our portal.
+                </div>
+
+                <div class="section">
+                    <h2>What We Offer</h2>
+                    <a href="#">Job Placement</a>
+                    <a href="#">Career Guide</a>
+                    <a href="#">Skill Training & Advocacy</a>
+                    <a href="#">General Consultancy</a>
+                </div>
+
+                <div class="section">
+                    <h2>Contacts</h2>
+                    Shop A2018 Tejuosho Main Shopping Complex, Tejuosho, Yaba, Lagos, Nigeria.
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="assets/logo.png" width="90" alt="Davii Concept Logo">
+            </div>
+
+            <p class="copyright-text">
+                Conditions of Use | Privacy Notice | Consumer Health Data Privacy Disclosure | Your Ads Privacy Choices <br>
+                &copy; 1996-2026, Davii-concept.com, Inc. or its affiliates
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daviicon Bank</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #ddd;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('Assets/bank hall.avif');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(68, 68, 68, 0.95);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 0;
+    }
+
+    h1 img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    input {
+      padding: 12px;
+      width: 100%;
+      max-width: 350px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px;
+      width: 100%;
+      max-width: 350px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #FFD700;
+      border: none;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #e6c200;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 350px;
+      margin: 10px auto;
+    }
+
+    .action-buttons button {
+      flex: 1;
+      max-width: none;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+      max-height: 200px;
+      overflow-y: auto;
+      text-align: left;
+    }
+
+    ul li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+   
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+
+      .app {
+        padding: 18px 15px;
+      }
+
+      h1 {
+        font-size: 20px;
+        flex-wrap: wrap;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      input, button {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Welcome to Daviicon Bank <img src="Assets/logo.png" alt="Logo"></h1>
+
+    <div id="loginSection" class="input-group">
+      <input type="text" id="usernameInput" placeholder="Enter username" />
+      <button onclick="login()">Login</button>
+    </div>
+
+    <div id="bankSection" style="display: none;">
+      <h2>Hello, <span id="displayName"></span> 👋</h2>
+      <p>💰 Current Balance: $<span id="balance">0</span></p>
+
+      <div class="input-group">
+        <input type="number" id="amountInput" placeholder="Enter amount" />
+        <div class="action-buttons">
+          <button onclick="deposit()">Deposit</button>
+          <button onclick="withdraw()">Withdraw</button>
+        </div>
+      </div>
+
+      <h3>📜 Transaction History:</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script>
+    let balance = 0;
+    const historyList = document.getElementById("historyList");
+
+    function login() {
+      const username = document.getElementById("usernameInput").value;
+      if (username) {
+        document.getElementById("displayName").textContent = username;
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("bankSection").style.display = "block";
+      }
+    }
+
+    function deposit() {
+      const amount = parseFloat(document.getElementById("amountInput").value);
+      if (!isNaN(amount) && amount > 0) {
+        balance += amount;
+        updateUI("Deposited", amount);
+      }
+    }
+
+    function withdraw() {
+      const amount = parseFloat(document.getElementById("amountInput").value);
+      if (!isNaN(amount) && amount > 0 && amount <= balance) {
+        balance -= amount;
+        updateUI("Withdrew", amount);
+      }
+    }
+
+    function updateUI(type, amount) {
+      document.getElementById("balance").textContent = balance.toFixed(2);
+      const li = document.createElement("li");
+      li.textContent = `${type}: $${amount.toFixed(2)}`;
+      historyList.appendChild(li);
+    }
+  </script>
+</body>
+</html>

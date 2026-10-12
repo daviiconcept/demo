@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - Davii Concept</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #DA70D6;
+            padding: 10px 20px;
+            color: #fff;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        a { 
+            text-decoration: none;
+            color: inherit;
+            font-size: 16px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-bottom {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            gap: 20px;
+            background: #FFFFE0;
+        }
+
+        
+        .form-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .col, .search-container {
+            flex: 1 1 200px;
+            position: relative;
+            width: 100%;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            height: 42px;
+            background-color: #fff;
+        }
+
+        .search-container input {
+            padding-right: 35px;
+            background: #DA70D6;
+            color: #fff;
+            border-color: #DA70D6;
+        }
+
+        .search-container input::placeholder {
+            color: #fff;      
+            opacity: 0.9;
+            font-weight: 600;
+            font-size: 14px;       
+        }
+
+        .search-container i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            pointer-events: none;
+        }
+
+       
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px 30px;
+            width: 100%;
+            flex: 1;
+        }
+
+        
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+       
+        .main {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .main h2 {
+            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .main p, .main h4 {
+            margin: 4px 0;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .location i, .product-offer i, .main h4 i, .main p i {
+            color: #FF8C00;
+        }
+
+        .location i {
+            color: #e63946;
+        }
+
+        .product-offer p {
+            color: #444;
+            background: #f1f1f1;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin: 6px 0;
+            font-weight: 600;
+        }
+
+        .main button {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .main button:hover {
+            background: #e2e2e2;
+        }
+
+      
+        footer {
+            background-color: #DA70D6;
+            color: #fff;
+            padding: 30px 20px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .top-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .top-row .section h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .top-row .section a {
+            display: block;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .social-icons a {
+            font-size: 24px;
+            margin: 0 8px;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .copyright-text {
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+       
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 8px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .col, .search-container {
+                flex: 1 1 100%;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   
+    <nav>
+        <a href="./nav-logo.html" class="nav-logo">
+            <img src="assets/logo.png" width="90" alt="Davii concept logo">
+        </a>
+        <div class="nav-links">
+            <a href="./home.html">Home</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./about.html">About</a>
+            <a href="./deals.html">Today's Jobs</a>
+        </div>
+    </nav>
+   
+    <div class="nav-bottom">
+        <a href="./login.html">
+            <i class="fas fa-lock" style="color:#FFD700;"></i> Log in
+        </a>
+        <a href="./register.html">
+            <i class="fas fa-user" style="color:#888;"></i> Register
+        </a>
+    </div>
+
+   
+    <div class="form-wrapper">
+        <div class="form-row">
+            <div class="col">
+                <select id="category" name="category">
+                    <option value="">Select Category</option>
+                    <option value="Fashion and design">Fashion and Design Jobs</option>
+                    <option value="Hospitality">Hospitality Jobs</option>
+                    <option value="Journalism">Journalism Jobs</option>
+                    <option value="Teaching">Teaching Jobs</option>
+                    <option value="Admin">Administrative Jobs</option>
+                    <option value="Sales">Sales & Marketing Jobs</option>
+                    <option value="Care">Home Care Jobs</option>
+                    <option value="Carpentry">Carpentry Jobs</option>
+                    <option value="Technician">Technician Jobs</option>
+                    <option value="Construction">Construction Jobs</option>
+                    <option value="Logistics">Logistics Jobs</option>
+                    <option value="Tech">Tech Jobs</option>
+                    <option value="Driving">Driving Jobs</option>
+                    <option value="Agro">Agro Jobs</option>
+                    <option value="Music & Entertainment">Music & Entertainment Jobs</option>
+                    <option value="Laundry">Laundry Jobs</option>
+                    <option value="Arts">Arts & Graphics Jobs</option>
+                    <option value="Factory">Factory Jobs</option>
+                    <option value="Security">Security Jobs</option>
+                    <option value="Engineering">Engineering Jobs</option>
+                    <option value="Law">Law Jobs</option>
+                    <option value="Plumber">Plumber Jobs</option>
+                    <option value="Telecom">Telecom Jobs</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <select id="skill" name="skill">
+                    <option value="">Select Skill</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <input type="text" id="location" placeholder="Enter Location">
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="container">
+        <div class="row">
+
+            <div class="main">
+                <div>
+                    <h2>Cleaner Jobs</h2>
+                    <p><i class="fa-solid fa-building"></i> Company Name <i class="fa-solid fa-caret-right"></i></p>
+                    <div class="product-offer">
+                        <p><i class="fa-solid fa-coins"></i> ₦50,000 - ₦100,000</p>
+                    </div>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Jakande, Lekki, Lagos</p>
+                    <h4><i class="fa-solid fa-clock"></i> Posted: 1 week ago</h4>
+                </div>
+                <a href="#"><button>View Job Details <i class="fa-solid fa-angle-right"></i></button></a>
+            </div>
+
+            <div class="main">
+                <div>
+                    <h2>Fashion & Design Jobs</h2>
+                    <p><i class="fa-solid fa-building"></i> Company Name <i class="fa-solid fa-caret-right"></i></p>
+                    <div class="product-offer">
+                        <p><i class="fa-solid fa-coins"></i> ₦50,000 - ₦300,000</p>
+                    </div>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Surulere, Lekki, Lagos</p>
+                    <h4><i class="fa-solid fa-clock"></i> Posted: 2 days ago</h4>
+                </div>
+                <a href="#"><button>View Job Details <i class="fa-solid fa-angle-right"></i></button></a>
+            </div>
+
+            <div class="main">
+                <div>
+                    <h2>Driving Jobs</h2>
+                    <p><i class="fa-solid fa-building"></i> Company Name <i class="fa-solid fa-caret-right"></i></p>
+                    <div class="product-offer">
+                        <p><i class="fa-solid fa-coins"></i> ₦70,000 - ₦120,000</p>
+                    </div>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Ajah, Lagos</p>
+                    <h4><i class="fa-solid fa-clock"></i> Posted: Today</h4>
+                </div>
+                <a href="#"><button>View Job Details <i class="fa-solid fa-angle-right"></i></button></a>
+            </div>
+
+            <div class="main">
+                <div>
+                    <h2>Hospitality Jobs</h2>
+                    <p><i class="fa-solid fa-building"></i> Company Name <i class="fa-solid fa-caret-right"></i></p>
+                    <div class="product-offer">
+                        <p><i class="fa-solid fa-coins"></i> ₦50,000 - ₦520,000</p>
+                    </div>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Jakande, Lekki, Alimosho, Surulere, Lagos</p>
+                    <h4><i class="fa-solid fa-clock"></i> Posted: 1 day ago</h4>
+                </div>
+                <a href="#"><button>View Job Details <i class="fa-solid fa-angle-right"></i></button></a>
+            </div>
+
+        </div>
+    </div>
+
+  
+    <footer>
+        <div class="footer-content">
+            <div class="top-row">
+                <div class="section">
+                    Davii-Concept Artisan Job Hub App is specifically designed for locating artisans willing to work on daily, weekly, and monthly bases in your geo location.
+                </div>
+
+                <div class="section">
+                    <h2>Make Money With Us</h2>
+                    Stand great chances of getting exciting offers when you refer people for jobs via our portal.
+                </div>
+
+                <div class="section">
+                    <h2>What We Offer</h2>
+                    <a href="#">Job Placement</a>
+                    <a href="#">Career Guide</a>
+                    <a href="#">Skill Training & Advocacy</a>
+                    <a href="#">General Consultancy</a>
+                </div>
+
+                <div class="section">
+                    <h2>Contacts</h2>
+                    Shop 242, 243 Tejuosho Ultra Modern Complex, Tejuosho, Yaba, Lagos, Nigeria.
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="assets/logo.png" width="90" alt="Davii Concept Logo">
+            </div>
+            
+            <div class="social-icons">
+                <p>Follow us @ 
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram" style="color:#E1306C;"></i></a>
+                    <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter" style="color: #fff;"></i></a>
+                    <a href="https://t.me/username" target="_blank"><i class="fab fa-telegram" style="color:#0088cc;"></i></a>
+                    <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok" style="color: #fff;"></i></a>
+                </p>
+            </div>
+
+            <p class="copyright-text">
+                Conditions of Use | Privacy Notice | Consumer Health Data Privacy Disclosure | Your Ads Privacy Choices <br>
+                &copy; 1996-2026, Davii-concept.com, Inc. or its affiliates
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

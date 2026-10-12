@@ -1,0 +1,271 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f172a;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        
+        header {
+            background: #1e293b;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            color: #38bdf8;
+        }
+
+        
+        .about {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.8;
+            color: #fff;
+            flex: 1;
+        }
+
+        .about h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        
+        .projects {
+            margin-top: 30px;
+        }
+
+        .projects h2 {
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .projects h2 img {
+            vertical-align: middle;
+        }
+
+        .projects ul {
+            padding-left: 25px;
+        }
+
+        .projects li {
+            margin-bottom: 8px;
+        }
+
+        
+        footer {
+            background: #1e293b;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 15px;
+            width: 100%;
+            letter-spacing: 4px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        
+
+        @media (max-width: 600px) {
+
+            
+            header {
+                padding: 8px 0;
+            }
+
+            nav ul li {
+                margin: 0 8px;
+                font-size: 20px;
+            }
+
+            nav ul li a {
+                font-size: 1em;
+            }
+
+            
+            .about {
+                margin: 25px auto;
+                padding: 15px;
+                width: 100%;
+            }
+
+            .about h1 {
+                font-size: 2rem;
+            }
+
+            .about p {
+                font-size: 1rem;
+            }
+
+            
+            .projects h2 {
+                font-size: 1.2rem;
+            }
+
+            .projects ul {
+                padding-left: 20px;
+            }
+
+            .projects li {
+                font-size: 0.95rem;
+            }
+
+            
+            footer {
+                font-size: 12px;
+                padding: 15px 10px;
+                letter-spacing: 1px;
+            }
+        }
+
+        
+        @media (max-width: 400px) {
+
+            nav ul li {
+                margin: 0 5px;
+            }
+
+            nav ul li a {
+                font-size: 0.9em;
+            }
+
+            .about h1 {
+                font-size: 1.7rem;
+            }
+
+            .projects h2 {
+                font-size: 1.1rem;
+            }
+
+            footer {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="./about.html">About</a>
+                </li>
+
+                <li>
+                    <a href="./contact.html">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    
+    <div class="about">
+
+        <h1>About Me</h1>
+
+        <p>
+            Hello, I'm <strong>Davidson Omeni</strong>, a passionate web developer
+            and technology enthusiast dedicated to creating modern, responsive,
+            and user-friendly digital experiences.
+        </p>
+
+        <p>
+            I enjoy turning ideas into functional and visually appealing websites
+            using HTML, CSS, and JavaScript. I am constantly learning and improving
+            my skills to stay up-to-date with the latest web technologies.
+        </p>
+
+
+        
+        <div class="projects">
+
+            <h2>
+                Here are a list of other projects done by me using
+                HTML, CSS & JavaScript.
+
+               
+            </h2>
+
+            <ul>
+                <li>Calculator</li>
+                <li>To-do list</li>
+                <li>Bulb on and off</li>
+                <li>E-commerce app</li>
+                <li>Color change</li>
+                <li>Timer</li>
+                <li>
+                    Landing/login pages for X, Facebook, Instagram, and Netflix
+                </li>
+            </ul>
+
+        </div>
+
+
+        <p>
+            Thank you for visiting my portfolio. Feel free to explore my projects
+            and contact me if you'd like us to work together.
+        </p>
+
+    </div>
+
+
+    <footer>
+        <p>
+            © 2026 Davii Concept business consultancy,
+            software programming and web solutions
+        </p>
+    </footer>
+
+</body>
+</html>
+

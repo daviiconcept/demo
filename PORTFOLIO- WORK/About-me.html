@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Davii Concept</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+        }
+
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #DA70D6;
+            padding: 10px 20px;
+            color: #fff;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        a { 
+            text-decoration: none;
+            color: inherit;
+            font-size: 16px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-bottom {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            gap: 20px;
+            background: #FFFFE0;
+        }
+
+        
+        .container-pix {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container-1 {
+            flex: 1 1 350px;
+            max-width: 550px;
+        }
+
+        .container-1 h1 { 
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #222;
+        }
+
+        .container-1 p {
+            margin: 0;
+            font-size: 17px;
+            font-style: italic;
+            font-family: "Playfair Display", Georgia, serif;
+            line-height: 1.8;
+            color: #444;
+        }
+
+    
+        .header-slider-container {
+            flex: 1 1 400px;           
+            max-width: 550px;
+            width: 100%;
+            background: #d3d3d3;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .header-slider {
+            position: relative;
+            width: 100%;
+            height: 380px;              
+            overflow: hidden;
+            border-radius: 8px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.45s ease-in-out;
+            height: 100%;
+            width: 100%;
+        }
+
+        .header-img {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dots {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 12px;
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active { 
+            background: #DA70D6; 
+            transform: scale(1.2);
+        }
+
+        
+        .section-block {
+            margin: 35px auto;
+            padding: 0 20px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .section-block h2 {
+            font-size: 32px;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .section-block p {
+            color: #444;
+            line-height: 1.8;
+            font-style: italic;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: 18px;
+        }
+
+        .team-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 15px 0 10px;
+            border: 3px solid #DA70D6;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        
+        footer {
+            background-color: #DA70D6;
+            color: #fff;
+            padding: 30px 20px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .top-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .top-row .section h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .top-row .section a {
+            display: block;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .social-icons {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .social-icons a {
+            font-size: 20px;
+            margin: 0 8px;
+            color: #fff;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright-text {
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.5;
+            opacity: 0.95;
+            margin-top: 15px;
+        }
+
+    
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .container-pix {
+                flex-direction: column;
+                padding: 20px 15px;
+            }
+
+            .container-1 h1 {
+                font-size: 32px;
+            }
+
+            .container-1 p, .section-block p {
+                font-size: 16px;
+            }
+
+            .header-slider {
+                height: 250px;
+            }
+
+            .section-block h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <nav>
+        <a href="./home.html" class="nav-logo">
+            <img src="assets/logo.png" width="90" alt="Davii Concept Logo">
+        </a>
+        <div class="nav-links">
+            <a href="./home.html">Home</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./about.html">About</a>
+            <a href="./jobs.html">Today's Jobs</a>
+        </div>
+    </nav>
+   
+    <div class="nav-bottom">
+        <a href="./login.html">
+            <i class="fas fa-lock" style="color:#FFD700;"></i> Log in
+        </a>
+        <a href="./register.html">
+            <i class="fas fa-user" style="color:#888;"></i> Register
+        </a>
+    </div>
+
+    
+    <div class="container-pix">
+        <div class="container-1">
+            <h1>About Us</h1>
+            <p>
+                Davii-concept world, an indigenous organisation founded in 2018,
+                specializes in sales of quality fabrics, sales and installation of quality
+                interior curtains, logistics, tech services, general consultancy
+                services, fashion and designing, hospitality services, construction and
+                engineering services, art and sculptural services, etc. We have a great
+                team of skilled professionals dedicated to serve and serve well.
+                We offer other numerous services through our various local and international
+                partners; Our online and virtual presence can be felt in various countries internationally 
+                like the US, UK, France, Netherlands, etc. We are simply the best at what we do as a trial 
+                will convince you.
+            </p>
+        </div>
+
+        <div class="header-slider-container">
+            <div class="header-slider">
+                <div class="slider-wrapper">
+                    <img src="assets/image-1.png" class="header-img" alt="Slide 1">
+                    <img src="assets/image-2.png" class="header-img" alt="Slide 2">
+                    <img src="assets/image-3.jpg" class="header-img" alt="Slide 3">
+                    <img src="assets/slider img2.jpg" class="header-img" alt="Slide 4">
+                    <img src="assets/slider img 5.jpg" class="header-img" alt="Slide 5">
+                    <img src="assets/teamwork-1.jpg" class="header-img" alt="Slide 6">
+                    <img src="assets/teamwork-2.jpg" class="header-img" alt="Slide 7">
+                </div>
+                <div class="dots" id="dotsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="section-block">
+        <h2>OUR VISION</h2>
+        <p>To empower millions of blue-collar and menial workers across Africa to access meaningful employment globally, and foster economic growth and prosperity in the region.</p>
+    </div>
+
+    <div class="section-block">
+        <h2>OUR MISSION</h2>
+        <p>To organize Africa's informal labor market, where over 90% of jobs are found, by providing efficient recruitment services and reliable access to work opportunities.</p>
+    </div>
+
+    <div class="section-block">
+        <h2>CORE VALUES</h2>
+        <p>We embrace strict dedication to service.<br>We are Trusted, Innovative, Modest, and Excellent in Service.</p>
+    </div>
+
+    <div class="section-block">
+        <h2>OUR TEAM</h2>
+        <img src="assets/me.png" class="team-img" alt="Omeni Davidson">
+        <p><strong>Omeni Davidson</strong><br>(Founder)</p>
+    </div>
+
+    
+    <footer>
+        <div class="footer-content">
+            <div class="top-row">
+                <div class="section">
+                    Davii-concept Artisan Job Hub App is specifically designed for locating artisans willing to work on daily, weekly, and monthly bases within your geo-location.
+                </div>
+
+                <div class="section">
+                    <h2>Make Money With Us</h2>
+                    Stand great chances of getting exciting offers when you refer people for jobs via our portal.
+                </div>
+
+                <div class="section">
+                    <h2>What We Offer</h2>
+                    <a href="#">Job Placement</a>
+                    <a href="#">Career Guide</a>
+                    <a href="#">Skill Training & Advocacy</a>
+                    <a href="#">General Consultancy</a>
+                </div>
+
+                <div class="section">
+                    <h2>Contacts</h2>
+                    Shop 242 & 243, Tejuosho Ultra Modern Complex, Yaba, Lagos, Nigeria.
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="assets/logo.png" width="90" alt="Davii Concept Logo">
+            </div>
+
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/2348030854814" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://t.me/username" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <p class="copyright-text">
+                Conditions of Use | Privacy Notice | Consumer Health Data Privacy Disclosure | Your Ads Privacy Choices <br>
+                &copy; 1996-2026, Davii-concept.com, Inc. or its affiliates
+            </p>
+        </div>
+    </footer>
+
+    
+    <script>
+    (function(){
+        const wrapper = document.querySelector('.slider-wrapper');
+        const slides = Array.from(document.querySelectorAll('.header-img'));
+        const dotsContainer = document.getElementById('dotsContainer');
+
+        if (!wrapper || slides.length === 0) return;
+
+        let active = 0;
+        const count = slides.length;
+        let autoplayId = null;
+        const autoplayDelay = 4000; 
+
+         
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (idx === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                active = idx;
+                update();
+                resetAutoplay();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        function update() {
+            wrapper.style.transform = `translateX(-${active * 100}%)`;
+            const dots = dotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === active));
+        }
+
+        function next() {
+            active = (active + 1) % count;
+            update();
+        }
+
+        function startAutoplay() {
+            stopAutoplay();
+            autoplayId = setInterval(next, autoplayDelay);
+        }
+
+        function stopAutoplay() {
+            if (autoplayId) clearInterval(autoplayId);
+        }
+
+        function resetAutoplay() { 
+            stopAutoplay(); 
+            startAutoplay(); 
+        }
+
+        update();
+        startAutoplay();
+    })();
+    </script>
+
+</body>
+</html>
